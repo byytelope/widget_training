@@ -10,15 +10,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final seedColor = Colors.yellow;
+
     return MaterialApp(
       title: "Widget Training",
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: seedColor)),
       darkTheme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.deepPurple,
+          seedColor: seedColor,
           brightness: Brightness.dark,
         ),
       ),
