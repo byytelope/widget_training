@@ -33,6 +33,12 @@ class _AnimationIconScreenState extends State<AnimationIconScreen>
   }
 
   @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Animation Icon")),

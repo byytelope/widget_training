@@ -1,3 +1,4 @@
+import "package:avatar_glow/avatar_glow.dart";
 import "package:flutter/material.dart";
 
 class AvatarGlowScreen extends StatelessWidget {
@@ -7,7 +8,13 @@ class AvatarGlowScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Avatar Glow")),
-      body: const Center(child: Text("Avatar Glow Screen Content")),
+      body: Center(
+        child: AvatarGlow(
+          glowColor: Theme.of(context).colorScheme.primary,
+          duration: const Duration(milliseconds: 2000),
+          child: Icon(Icons.menu, size: 40),
+        ),
+      ),
     );
   }
 }

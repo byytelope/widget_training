@@ -1,5 +1,5 @@
 package com.example.widget_training
 
-import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.android.FlutterFragmentActivityy
 
-class MainActivity : FlutterActivity()
+class MainActivity : FlutterFragmentActivity()

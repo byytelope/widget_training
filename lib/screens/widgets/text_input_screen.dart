@@ -9,7 +9,7 @@ class TextInputScreen extends StatefulWidget {
 
 class _TextInputScreenState extends State<TextInputScreen> {
   String _text = "What's on your mind?";
-  final TextEditingController _controller = TextEditingController();
+  late TextEditingController _controller;
 
   void onPost(String value) {
     if (value.isNotEmpty) {
@@ -17,6 +17,18 @@ class _TextInputScreenState extends State<TextInputScreen> {
         _text = value;
       });
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override

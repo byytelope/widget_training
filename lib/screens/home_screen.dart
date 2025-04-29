@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 
+import "package:widget_training/screens/not_found_screen.dart";
 import "package:widget_training/screens/widgets/alert_box_screen.dart";
 import "package:widget_training/screens/widgets/animation_icon_screen.dart";
 import "package:widget_training/screens/widgets/avatar_glow_screen.dart";
@@ -142,7 +143,7 @@ class HomeScreen extends StatelessWidget {
       case "Progress Indicator":
         return const ProgressIndicatorScreen();
       default:
-        return const SizedBox();
+        return const NotFoundScreen();
     }
   }
 
@@ -152,48 +153,51 @@ class HomeScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar.large(
+            automaticallyImplyLeading: false,
             expandedHeight: 150,
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
               title: Text("Widget Training"),
             ),
           ),
-          SliverPadding(
-            padding: EdgeInsets.all(16.0),
-            sliver: SliverGrid.builder(
-              itemCount: widgetItems.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 1.5,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-              ),
-              itemBuilder: (context, index) {
-                final itemTitle = widgetItems[index];
-                return Card.filled(
-                  elevation: 0,
-                  clipBehavior: Clip.antiAlias,
-                  child: InkWell(
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          itemTitle,
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.titleSmall,
+          SliverSafeArea(
+            sliver: SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              sliver: SliverGrid.builder(
+                itemCount: widgetItems.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 1.5,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                itemBuilder: (context, index) {
+                  final itemTitle = widgetItems[index];
+                  return Card.filled(
+                    elevation: 0,
+                    clipBehavior: Clip.antiAlias,
+                    child: InkWell(
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            itemTitle,
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.titleSmall,
+                          ),
                         ),
                       ),
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => _getScreenForItem(itemTitle),
+                          ),
+                        );
+                      },
                     ),
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => _getScreenForItem(itemTitle),
-                        ),
-                      );
-                    },
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ),
         ],
