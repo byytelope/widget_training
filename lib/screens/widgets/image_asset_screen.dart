@@ -7,7 +7,16 @@ class ImageAssetScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Image Asset")),
-      body: const Center(child: Text("Image Asset Screen Content")),
+      body: Center(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20.0),
+          child: SizedBox(
+            width: 300,
+            height: 300,
+            child: Image.asset("images/cat.jpg", fit: BoxFit.fill),
+          ),
+        ),
+      ),
     );
   }
 }

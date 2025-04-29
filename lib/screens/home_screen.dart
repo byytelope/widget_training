@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
     "Image Asset",
     "Image Swiping",
     "Slidable Widget",
-    "Listview Builder",
+    "ListView Builder",
     "Alert Box",
     "Gesture Detector",
     "Animation Icon",
@@ -87,8 +87,8 @@ class HomeScreen extends StatelessWidget {
         return const ImageSwipingScreen();
       case "Slidable Widget":
         return const SlidableWidgetScreen();
-      case "Listview Builder":
-        return const ListviewBuilderScreen();
+      case "ListView Builder":
+        return const ListViewBuilderScreen();
       case "Alert Box":
         return const AlertBoxScreen();
       case "Gesture Detector":
