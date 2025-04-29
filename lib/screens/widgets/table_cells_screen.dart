@@ -30,7 +30,9 @@ class TableCellsScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: Table(
-            border: TableBorder.all(),
+            border: TableBorder.all(
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
             columnWidths: {
               0: const FractionColumnWidth(0.5),
               1: const FractionColumnWidth(0.25),

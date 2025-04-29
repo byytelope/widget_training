@@ -42,16 +42,16 @@ class _DisableButtonScreenState extends State<DisableButtonScreen> {
               controller: _controller,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
-                label: Text("Type here"),
-                hintText: "Type to enable the button",
+                label: Text("Type here to enable button"),
               ),
             ),
             FilledButton(
               onPressed:
                   _isButtonActive
                       ? () {
+                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text("Button Pressed")),
+                          SnackBar(content: Text(_controller.text)),
                         );
                         _controller.clear();
                         setState(() {

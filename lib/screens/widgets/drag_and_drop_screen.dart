@@ -10,22 +10,8 @@ class DragAndDropScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text("Drag and Drop")),
       body: ReorderableListView.builder(
-        clipBehavior: Clip.antiAlias,
-        proxyDecorator: (child, index, animation) {
-          return Material(
-            color: Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            child: child,
-          );
-        },
         itemBuilder: (context, index) {
-          return Card.filled(
-            clipBehavior: Clip.antiAlias,
-            key: ValueKey(index),
-            child: ListTile(title: Text(items[index])),
-          );
+          return ListTile(key: ValueKey(index), title: Text(items[index]));
         },
         itemCount: items.length,
         onReorder: (oldIndex, newIndex) {

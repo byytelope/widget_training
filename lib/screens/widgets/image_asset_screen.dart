@@ -13,7 +13,7 @@ class ImageAssetScreen extends StatelessWidget {
           child: SizedBox(
             width: 300,
             height: 300,
-            child: Image.asset("images/cat.jpg", fit: BoxFit.fill),
+            child: Image.asset("assets/cat1.jpg", fit: BoxFit.fill),
           ),
         ),
       ),

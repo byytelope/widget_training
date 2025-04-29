@@ -7,7 +7,17 @@ class NavigationAndRoutesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Navigation & Routes")),
-      body: const Center(child: Text("Navigation & Routes Screen Content")),
+      body: Center(
+        child: FilledButton(
+          onPressed:
+              () => Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => NavigationAndRoutesScreen(),
+                ),
+              ),
+          child: Text("Recursive Replace Navigation"),
+        ),
+      ),
     );
   }
 }

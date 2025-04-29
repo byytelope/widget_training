@@ -47,8 +47,8 @@ class _DopeAnimationsScreenState extends State<DopeAnimationsScreen>
               });
             }
           },
-          child: Lottie.network(
-            "https://lottie.host/f44dc53c-c7ae-42f8-8ccd-cbb15cfc392a/8MDyCcVehu.json",
+          child: Lottie.asset(
+            "assets/lottie_bookmark.json",
             height: 100,
             repeat: false,
             controller: _controller,

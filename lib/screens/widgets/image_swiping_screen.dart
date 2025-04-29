@@ -8,12 +8,12 @@ class ImageSwipingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = PageController();
     final images = [
-      "images/cat1.jpg",
-      "images/cat2.jpg",
-      "images/cat3.jpg",
-      "images/cat4.jpg",
-      "images/cat5.jpg",
-      "images/cat6.jpg",
+      "assets/cat1.jpg",
+      "assets/cat2.jpg",
+      "assets/cat3.jpg",
+      "assets/cat4.jpg",
+      "assets/cat5.jpg",
+      "assets/cat6.jpg",
     ];
 
     return Scaffold(

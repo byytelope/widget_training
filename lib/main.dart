@@ -1,9 +1,20 @@
 import "package:flutter/material.dart";
+import "package:hive_ce_flutter/hive_flutter.dart";
+import "package:provider/provider.dart";
 
 import "package:widget_training/screens/home_screen.dart";
+import "package:widget_training/services/theme_provider.dart";
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  await Hive.initFlutter();
+  await Hive.openBox("mybox");
+
+  runApp(
+    MultiProvider(
+      providers: [ChangeNotifierProvider(create: (context) => ThemeProvider())],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -23,6 +34,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
       ),
+      themeMode: context.watch<ThemeProvider>().themeMode,
       home: const HomeScreen(),
     );
   }
