@@ -1,17 +1,36 @@
+import "dart:io" show Platform;
+
+import "package:firebase_core/firebase_core.dart";
 import "package:flutter/material.dart";
 import "package:hive_ce_flutter/hive_flutter.dart";
 import "package:provider/provider.dart";
 
+import "package:widget_training/api/firebase_api.dart";
+import "package:widget_training/firebase_options.dart";
 import "package:widget_training/screens/home_screen.dart";
+import "package:widget_training/services/counter_provider.dart";
 import "package:widget_training/services/theme_provider.dart";
 
+final navigatorKey = GlobalKey<NavigatorState>();
+
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   await Hive.initFlutter();
   await Hive.openBox("mybox");
 
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  if (Platform.isAndroid) {
+    await FirebaseApi().initNotifications();
+  }
+
   runApp(
     MultiProvider(
-      providers: [ChangeNotifierProvider(create: (context) => ThemeProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        ChangeNotifierProvider(create: (context) => CounterModel()),
+      ],
       child: const MyApp(),
     ),
   );
@@ -23,19 +42,36 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final seedColor = Colors.yellow;
+    final pageTransitionsTheme = PageTransitionsTheme(
+      builders: {
+        TargetPlatform.android: const FadeForwardsPageTransitionsBuilder(),
+        TargetPlatform.iOS: const CupertinoPageTransitionsBuilder(),
+      },
+    );
 
     return MaterialApp(
       title: "Widget Training",
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: seedColor)),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: seedColor),
+        pageTransitionsTheme: pageTransitionsTheme,
+        progressIndicatorTheme: const ProgressIndicatorThemeData(
+          year2023: false,
+        ),
+      ),
       darkTheme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: seedColor,
           brightness: Brightness.dark,
         ),
+        pageTransitionsTheme: pageTransitionsTheme,
+        progressIndicatorTheme: const ProgressIndicatorThemeData(
+          year2023: false,
+        ),
       ),
       themeMode: context.watch<ThemeProvider>().themeMode,
       home: const HomeScreen(),
+      navigatorKey: navigatorKey,
     );
   }
 }

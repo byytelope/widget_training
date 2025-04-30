@@ -1,3 +1,4 @@
+import "package:firebase_messaging/firebase_messaging.dart";
 import "package:flutter/material.dart";
 
 class LocalPushNotificationsScreen extends StatelessWidget {
@@ -5,10 +6,24 @@ class LocalPushNotificationsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final message =
+        ModalRoute.of(context)?.settings.arguments as RemoteMessage?;
+
     return Scaffold(
       appBar: AppBar(title: const Text("Local Push Notifications")),
-      body: const Center(
-        child: Text("Local Push Notifications Screen Content"),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (message != null)
+              Text(
+                "Notification Title: ${message.notification?.title}\n"
+                "Notification Body: ${message.notification?.body}",
+                textAlign: TextAlign.center,
+              ),
+            Text("Send a notification from firebase console to see it here"),
+          ],
+        ),
       ),
     );
   }
